@@ -3,25 +3,134 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --primary-gold: #C9A46C;
+  --gold-hover: #B59058;
+  --gold-light: #F1E5D3;
+  --gold-accent: #D4B27C;
+  --dark-bronze: #8F7049;
+  --obsidian: #0D0F13;
+  --card-bg: #151821;
+  --card-hover: #1C202B;
+  --border-gold: #C9A46C;
+  --border-subtle: #242937;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Nunito Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: var(--obsidian);
+  color: #F3F4F6;
+  overflow-x: hidden;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+h1, h2, h3, .font-luxury {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* Subtle gold gradients */
+.gold-text-gradient {
+  background: linear-gradient(135deg, #FFFFFF 0%, #F1E5D3 40%, #C9A46C 80%, #8F7049 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.gold-badge {
+  background: rgba(201, 164, 108, 0.12);
+  border: 1px solid rgba(201, 164, 108, 0.35);
+  color: #DFCAA5;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0D0F13;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #2B3142;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #C9A46C;
+}
+
+/* -------------------------------------------------------------
+ * FORMAL ARCHITECTURAL PRINT & PDF EXPORT STYLESHEET
+ * ------------------------------------------------------------- */
+@media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 14mm;
+  }
+
+  html, body {
+    background: #FFFFFF !important;
+    background-color: #FFFFFF !important;
+    color: #111827 !important;
+    font-size: 10pt !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    width: 100% !important;
+    min-height: 0 !important;
+  }
+
+  /* Completely eliminate sidebars, headers, floating widgets and interactive controls */
+  header,
+  aside,
+  nav,
+  button:not(.print-keep),
+  select,
+  .no-print,
+  .print-hidden,
+  [data-print="hidden"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+  }
+
+  /* Reset main layout canvas to use 100% full width */
+  main {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    display: block !important;
+  }
+
+  /* Force print table layout and zero column truncation */
+  .boq-print-table {
+    width: 100% !important;
+    table-layout: fixed !important;
+    border-collapse: collapse !important;
+    font-size: 9pt !important;
+  }
+
+  .boq-print-table th {
+    background-color: #F8FAFC !important;
+    color: #0F172A !important;
+    border-top: 1.5px solid #0F172A !important;
+    border-bottom: 1.5px solid #0F172A !important;
+    padding: 8px 10px !important;
+    font-size: 8.5pt !important;
+    text-transform: uppercase !important;
+    font-weight: 700 !important;
+  }
+
+  .boq-print-table td {
+    border-bottom: 1px solid #E2E8F0 !important;
+    padding: 8px 10px !important;
+    color: #1E293B !important;
+    font-size: 9pt !important;
+  }
+
+  .boq-print-table tr {
+    page-break-inside: avoid !important;
   }
 }
