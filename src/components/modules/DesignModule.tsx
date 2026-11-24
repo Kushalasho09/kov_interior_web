@@ -86,23 +86,23 @@ export default function DesignModule({ pins, projectId, onPinsUpdated }: DesignM
   return (
     <div className="space-y-6">
       {/* 1. HEADER BAR - STRICT PIXEL-PERFECT ALIGNMENT */}
-      <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 p-5 sm:p-6 rounded-2xl bg-[#151821] border border-[#262C3A] shadow-md">
+      <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 p-5 sm:p-6 rounded-2xl bg-white dark:bg-[#151821] border border-slate-200 dark:border-[#262C3A] shadow-sm dark:shadow-md transition-colors">
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
-            <h2 className="font-luxury text-lg sm:text-xl font-bold text-slate-100">
+            <h2 className="font-luxury text-lg sm:text-xl font-bold text-slate-900 dark:text-slate-100">
               Design Management & Architectural Pins
             </h2>
-            <span className="h-7 px-3 rounded-full text-xs font-bold bg-[#C9A46C]/15 text-[#DFCAA5] border border-[#C9A46C]/30 inline-flex items-center justify-center whitespace-nowrap shrink-0">
+            <span className="h-7 px-3 rounded-full text-xs font-bold bg-[#C9A46C]/15 text-[#8F7049] dark:text-[#DFCAA5] border border-[#C9A46C]/30 inline-flex items-center justify-center whitespace-nowrap shrink-0">
               3D Perspectives
             </span>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Click directly anywhere on the Kov Interior architectural render below to drop custom material specs.
           </p>
         </div>
 
         {/* Room Switcher Tabs - Guaranteed never to overflow card boundary */}
-        <div className="h-9 flex items-center bg-[#191D27] border border-[#262C3A] rounded-xl p-0.5 text-xs shrink-0 self-start xl:self-auto overflow-x-auto max-w-full">
+        <div className="h-9 flex items-center bg-slate-100 dark:bg-[#191D27] border border-slate-200 dark:border-[#262C3A] rounded-xl p-0.5 text-xs shrink-0 self-start xl:self-auto overflow-x-auto max-w-full">
           {ROOM_VIEWS.map((room) => (
             <button
               key={room.id}
@@ -113,7 +113,7 @@ export default function DesignModule({ pins, projectId, onPinsUpdated }: DesignM
               className={`h-full px-3.5 sm:px-4 rounded-lg font-bold transition-all whitespace-nowrap inline-flex items-center justify-center ${
                 selectedRoom.id === room.id
                   ? 'bg-[#C9A46C] text-slate-950 shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
               }`}
             >
               {room.name}
@@ -175,12 +175,12 @@ export default function DesignModule({ pins, projectId, onPinsUpdated }: DesignM
             </div>
 
             {/* Canvas Bottom Bar */}
-            <div className="p-3.5 bg-[#101217] border-t border-[#232938] flex items-center justify-between text-xs text-slate-400">
+            <div className="p-3.5 bg-slate-100 dark:bg-[#101217] border-t border-slate-200 dark:border-[#232938] flex items-center justify-between text-xs text-slate-600 dark:text-slate-400 transition-colors">
               <span className="flex items-center gap-2">
-                <ZoomIn className="w-4 h-4 text-[#C9A46C]" />
-                <span className="text-slate-200 font-medium">Click anywhere on render to drop a new specification pin</span>
+                <ZoomIn className="w-4 h-4 text-[#B58E50] dark:text-[#C9A46C]" />
+                <span className="text-slate-800 dark:text-slate-200 font-medium">Click anywhere on render to drop a new specification pin</span>
               </span>
-              <span className="text-xs text-[#C9A46C] font-semibold">{(selectedRoom as any).fullName || selectedRoom.name} • {selectedRoom.area}</span>
+              <span className="text-xs text-[#8F7049] dark:text-[#C9A46C] font-semibold">{(selectedRoom as any).fullName || selectedRoom.name} • {selectedRoom.area}</span>
             </div>
           </div>
         </div>
@@ -188,15 +188,15 @@ export default function DesignModule({ pins, projectId, onPinsUpdated }: DesignM
         {/* Pin Details & Creation Panel (1 Column) */}
         <div className="space-y-4">
           {newPinCoords ? (
-            <div className="p-5 rounded-2xl bg-[#171B26] border border-[#C9A46C] shadow-xl space-y-4">
-              <div className="flex items-center justify-between pb-2 border-b border-[#293247]">
-                <h3 className="text-xs font-bold text-[#F1E5D3] flex items-center gap-1.5">
+            <div className="p-5 rounded-2xl bg-white dark:bg-[#171B26] border border-[#C9A46C] shadow-lg space-y-4 transition-colors">
+              <div className="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-[#293247]">
+                <h3 className="text-xs font-bold text-slate-900 dark:text-[#F1E5D3] flex items-center gap-1.5">
                   <Plus className="w-4 h-4 text-[#C9A46C]" />
                   Drop Specification Pin @ ({newPinCoords.x}%, {newPinCoords.y}%)
                 </h3>
                 <button
                   onClick={() => setNewPinCoords(null)}
-                  className="text-xs text-slate-400 hover:text-slate-200"
+                  className="text-xs text-slate-500 dark:text-slate-400 hover:text-slate-800 dark:hover:text-slate-200"
                 >
                   Cancel
                 </button>
@@ -204,36 +204,36 @@ export default function DesignModule({ pins, projectId, onPinsUpdated }: DesignM
 
               <form onSubmit={handleSavePin} className="space-y-3">
                 <div>
-                  <label className="text-xs text-slate-300 font-bold">Pin Specification Title *</label>
+                  <label className="text-xs text-slate-700 dark:text-slate-300 font-bold">Pin Specification Title *</label>
                   <input
                     type="text"
                     required
                     placeholder="e.g. Custom Fluted Smoked Oak Panel"
                     value={pinTitle}
                     onChange={(e) => setPinTitle(e.target.value)}
-                    className="w-full mt-1 bg-[#12151E] border border-[#282F40] rounded-xl px-3.5 py-2 text-xs text-slate-100 focus:outline-none focus:border-[#C9A46C]"
+                    className="w-full mt-1 bg-slate-50 dark:bg-[#12151E] border border-slate-200 dark:border-[#282F40] rounded-xl px-3.5 py-2 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:border-[#C9A46C]"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs text-slate-300 font-bold">Material Specification</label>
+                  <label className="text-xs text-slate-700 dark:text-slate-300 font-bold">Material Specification</label>
                   <input
                     type="text"
                     placeholder="e.g. Century Marine Ply IS:710 + 4mm Smoked Oak"
                     value={pinSpec}
                     onChange={(e) => setPinSpec(e.target.value)}
-                    className="w-full mt-1 bg-[#12151E] border border-[#282F40] rounded-xl px-3.5 py-2 text-xs text-slate-100 focus:outline-none focus:border-[#C9A46C]"
+                    className="w-full mt-1 bg-slate-50 dark:bg-[#12151E] border border-slate-200 dark:border-[#282F40] rounded-xl px-3.5 py-2 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:border-[#C9A46C]"
                   />
                 </div>
 
                 <div>
-                  <label className="text-xs text-slate-300 font-bold">Architectural Notes</label>
+                  <label className="text-xs text-slate-700 dark:text-slate-300 font-bold">Architectural Notes</label>
                   <textarea
                     rows={2}
                     placeholder="e.g. Align grain pattern vertically, provide concealed conduit channel."
                     value={pinNote}
                     onChange={(e) => setPinNote(e.target.value)}
-                    className="w-full mt-1 bg-[#12151E] border border-[#282F40] rounded-xl px-3.5 py-2 text-xs text-slate-100 focus:outline-none focus:border-[#C9A46C]"
+                    className="w-full mt-1 bg-slate-50 dark:bg-[#12151E] border border-slate-200 dark:border-[#282F40] rounded-xl px-3.5 py-2 text-xs text-slate-900 dark:text-slate-100 focus:outline-none focus:border-[#C9A46C]"
                   />
                 </div>
 
@@ -247,17 +247,17 @@ export default function DesignModule({ pins, projectId, onPinsUpdated }: DesignM
               </form>
             </div>
           ) : selectedPin ? (
-            <div className="p-5 rounded-2xl bg-[#151821] border border-[#2A3245] shadow-lg space-y-4">
-              <div className="flex items-center justify-between pb-3 border-b border-[#232938]">
-                <span className="text-xs font-bold px-2.5 py-1 rounded-lg bg-[#C9A46C]/20 text-[#DFCAA5] border border-[#C9A46C]/30">
+            <div className="p-5 rounded-2xl bg-white dark:bg-[#151821] border border-slate-200 dark:border-[#2A3245] shadow-sm dark:shadow-lg space-y-4 transition-colors">
+              <div className="flex items-center justify-between pb-3 border-b border-slate-200 dark:border-[#232938]">
+                <span className="text-xs font-bold px-2.5 py-1 rounded-lg bg-[#C9A46C]/20 text-[#8F7049] dark:text-[#DFCAA5] border border-[#C9A46C]/30">
                   Pin Spec Details
                 </span>
                 <button
                   onClick={() => handleToggleStatus(selectedPin.id, selectedPin.status)}
                   className={`px-3 py-1 rounded-lg text-xs font-bold flex items-center gap-1.5 transition-colors ${
                     selectedPin.status === 'approved'
-                      ? 'bg-emerald-950/70 text-emerald-400 border border-emerald-800/40 hover:bg-emerald-900/60'
-                      : 'bg-amber-950/70 text-amber-400 border border-amber-800/40 hover:bg-amber-900/60'
+                      ? 'bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-800/40 hover:bg-emerald-200 dark:hover:bg-emerald-900/60'
+                      : 'bg-amber-100 dark:bg-amber-950/70 text-amber-800 dark:text-amber-400 border border-amber-300 dark:border-amber-800/40 hover:bg-amber-200 dark:hover:bg-amber-900/60'
                   }`}
                 >
                   <CheckCircle2 className="w-3.5 h-3.5" />
@@ -266,24 +266,24 @@ export default function DesignModule({ pins, projectId, onPinsUpdated }: DesignM
               </div>
 
               <div>
-                <h3 className="font-luxury text-base font-bold text-slate-100">{selectedPin.title}</h3>
-                <p className="text-xs text-slate-400 mt-1">Location: {selectedPin.room_name}</p>
+                <h3 className="font-luxury text-base font-bold text-slate-900 dark:text-slate-100">{selectedPin.title}</h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">Location: {selectedPin.room_name}</p>
               </div>
 
               {selectedPin.material_spec && (
-                <div className="p-3.5 rounded-xl bg-[#1A1F2C] border border-[#262D3E]">
-                  <p className="text-[10px] text-slate-400 uppercase tracking-wider font-bold">
+                <div className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#1A1F2C] border border-slate-200 dark:border-[#262D3E]">
+                  <p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-bold">
                     Material Specification
                   </p>
-                  <p className="text-xs text-[#C9A46C] font-semibold mt-1">
+                  <p className="text-xs text-[#8F7049] dark:text-[#C9A46C] font-semibold mt-1">
                     {selectedPin.material_spec}
                   </p>
                 </div>
               )}
 
               {selectedPin.note && (
-                <div className="text-xs text-slate-300 bg-[#12151E] p-3 rounded-xl border border-[#202636] leading-relaxed">
-                  <p className="text-[10px] text-slate-400 uppercase tracking-wider font-bold mb-1">
+                <div className="text-xs text-slate-700 dark:text-slate-300 bg-slate-50 dark:bg-[#12151E] p-3 rounded-xl border border-slate-200 dark:border-[#202636] leading-relaxed">
+                  <p className="text-[10px] text-slate-500 dark:text-slate-400 uppercase tracking-wider font-bold mb-1">
                     Architectural Note
                   </p>
                   <p>{selectedPin.note}</p>
@@ -293,10 +293,10 @@ export default function DesignModule({ pins, projectId, onPinsUpdated }: DesignM
           ) : null}
 
           {/* List of all pins */}
-          <div className="p-4 rounded-2xl bg-[#151821] border border-[#232938] space-y-3">
-            <h4 className="text-xs font-bold text-slate-200 flex items-center justify-between">
+          <div className="p-4 rounded-2xl bg-white dark:bg-[#151821] border border-slate-200 dark:border-[#232938] shadow-sm dark:shadow-md space-y-3 transition-colors">
+            <h4 className="text-xs font-bold text-slate-800 dark:text-slate-200 flex items-center justify-between">
               <span>All Floorplan Pins</span>
-              <span className="text-xs text-[#C9A46C] font-mono font-bold">{pins.length} Specs</span>
+              <span className="text-xs text-[#8F7049] dark:text-[#C9A46C] font-mono font-bold">{pins.length} Specs</span>
             </h4>
 
             <div className="space-y-2 max-h-60 overflow-y-auto">
@@ -309,12 +309,12 @@ export default function DesignModule({ pins, projectId, onPinsUpdated }: DesignM
                   }}
                   className={`p-3 rounded-xl border text-xs cursor-pointer transition-all flex items-center justify-between ${
                     selectedPin?.id === pin.id
-                      ? 'bg-[#1E2535] border-[#C9A46C]/60 text-slate-100 font-semibold'
-                      : 'bg-[#181D28] border-[#252C3C] text-slate-400 hover:text-slate-200'
+                      ? 'bg-amber-50 dark:bg-[#1E2535] border-[#C9A46C] text-slate-900 dark:text-slate-100 font-semibold'
+                      : 'bg-slate-50 dark:bg-[#181D28] border-slate-200 dark:border-[#252C3C] text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
                   }`}
                 >
                   <div className="flex items-center gap-2.5 truncate">
-                    <span className="w-5 h-5 rounded-full bg-[#262E42] text-[#C9A46C] flex items-center justify-center font-bold text-[10px] shrink-0">
+                    <span className="w-5 h-5 rounded-full bg-slate-200 dark:bg-[#262E42] text-[#8F7049] dark:text-[#C9A46C] flex items-center justify-center font-bold text-[10px] shrink-0">
                       {i + 1}
                     </span>
                     <span className="truncate">{pin.title}</span>
@@ -322,8 +322,8 @@ export default function DesignModule({ pins, projectId, onPinsUpdated }: DesignM
                   <span
                     className={`text-[10px] px-2 py-0.5 rounded font-bold ${
                       pin.status === 'approved'
-                        ? 'bg-emerald-950/70 text-emerald-400 border border-emerald-800/40'
-                        : 'bg-amber-950/70 text-amber-400 border border-amber-800/40'
+                        ? 'bg-emerald-100 dark:bg-emerald-950/70 text-emerald-800 dark:text-emerald-400 border border-emerald-300 dark:border-emerald-800/40'
+                        : 'bg-amber-100 dark:bg-amber-950/70 text-amber-800 dark:text-amber-400 border border-amber-300 dark:border-amber-800/40'
                     }`}
                   >
                     {pin.status}

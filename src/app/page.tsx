@@ -17,6 +17,9 @@ import {
 
 import Sidebar, { ActiveTab } from '@/components/Sidebar';
 import Header from '@/components/Header';
+import LandingPage from '@/components/landing/LandingPage';
+import { UserRole } from '@/components/auth/WebLoginModal';
+
 import OverviewModule from '@/components/modules/OverviewModule';
 import CrmModule from '@/components/modules/CrmModule';
 import DesignModule from '@/components/modules/DesignModule';
@@ -30,7 +33,9 @@ import HrmsModule from '@/components/modules/HrmsModule';
 import AiModule from '@/components/modules/AiModule';
 
 export default function Home() {
+  const [currentView, setCurrentView] = useState<'landing' | 'dashboard'>('landing');
   const [activeTab, setActiveTab] = useState<ActiveTab>('overview');
+  const [userRole, setUserRole] = useState<string>('Studio Lead');
   const [isLoading, setIsLoading] = useState(true);
   const [isRefreshing, setIsRefreshing] = useState(false);
 
@@ -96,6 +101,18 @@ export default function Home() {
 
   // Initial load and continuous Supabase Realtime channel
   useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const viewParam = params.get('view');
+      const tabParam = params.get('tab') as ActiveTab;
+      if (viewParam === 'dashboard') {
+        setCurrentView('dashboard');
+      }
+      if (tabParam) {
+        setActiveTab(tabParam);
+      }
+    }
+
     fetchRef.current();
 
     const channel = supabase
@@ -115,32 +132,66 @@ export default function Home() {
     fetchAllData();
   };
 
+  const handleEnterWorkspace = (role: UserRole, targetTab?: ActiveTab) => {
+    if (role === 'studio_lead') setUserRole('Studio Lead');
+    else if (role === 'site_architect') setUserRole('Site Architect');
+    else setUserRole('Client Portal');
+
+    if (targetTab) {
+      setActiveTab(targetTab);
+    }
+    setCurrentView('dashboard');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleBackToWebsite = () => {
+    setCurrentView('landing');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   if (isLoading) {
     return (
-      <div className="min-h-screen bg-[#0D0F13] flex items-center justify-center flex-col gap-4">
-        <div className="w-16 h-16 rounded-2xl bg-[#181B22] border border-[#C9A46C]/60 p-2 flex items-center justify-center shadow-2xl animate-pulse">
+      <div className="min-h-screen bg-slate-50 dark:bg-[#0D0F13] flex items-center justify-center flex-col gap-4 transition-colors">
+        <div className="w-16 h-16 rounded-2xl bg-white dark:bg-[#181B22] border border-[#C9A46C]/60 p-2 flex items-center justify-center shadow-xl animate-pulse">
           <img src="/assets/logo.png" alt="KOV INTERIOR" className="w-full h-full object-contain" />
         </div>
-        <p className="text-xs text-[#C9A46C] font-bold tracking-widest uppercase">
+        <p className="text-xs text-[#8F7049] dark:text-[#C9A46C] font-bold tracking-widest uppercase">
           Initializing Kov Interiors OS...
         </p>
       </div>
     );
   }
 
+  // Public Landing Website Mode
+  if (currentView === 'landing') {
+    return (
+      <LandingPage
+        onEnterWorkspace={handleEnterWorkspace}
+        onRefreshData={fetchAllData}
+      />
+    );
+  }
+
+  // Private Studio Dashboard OS Mode
   return (
-    <div className="min-h-screen bg-[#0D0F13] text-[#F3F4F6] flex print:block print:bg-white print:text-slate-900 print:min-h-0">
+    <div className="min-h-screen bg-slate-50 dark:bg-[#0D0F13] text-slate-900 dark:text-[#F3F4F6] flex print:block print:bg-white print:text-slate-900 print:min-h-0 transition-colors">
       {/* Fixed Left Navigation */}
       <Sidebar
         activeTab={activeTab}
         setActiveTab={setActiveTab}
         projectName={project?.title}
         projectLocation={project?.location}
+        onBackToWebsite={handleBackToWebsite}
       />
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col min-w-0 print:block print:w-full print:m-0 print:p-0">
-        <Header onRefresh={handleRefresh} isRefreshing={isRefreshing} />
+        <Header
+          onRefresh={handleRefresh}
+          isRefreshing={isRefreshing}
+          onBackToWebsite={handleBackToWebsite}
+          userRole={userRole}
+        />
 
         <main className="flex-1 p-6 lg:p-8 max-w-7xl w-full mx-auto print:p-0 print:m-0 print:max-w-none print:w-full print:block">
           {activeTab === 'overview' && (

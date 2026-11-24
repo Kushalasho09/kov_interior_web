@@ -139,22 +139,22 @@ export default function HandoverModule({
   return (
     <div className="space-y-6">
       {/* Header Bar */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 p-6 rounded-2xl bg-[#151821] border border-[#262C3A] shadow-md">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 p-6 rounded-2xl bg-white dark:bg-[#151821] border border-slate-200 dark:border-[#262C3A] shadow-sm dark:shadow-md transition-colors">
         <div>
           <div className="flex items-center gap-3">
-            <h2 className="font-luxury text-xl font-bold text-slate-100 whitespace-nowrap">
+            <h2 className="font-luxury text-xl font-bold text-slate-900 dark:text-slate-100 whitespace-nowrap">
               Site Handover & Digital Certificate
             </h2>
-            <span className="h-7 px-3 rounded-full text-xs font-bold bg-[#C9A46C]/15 text-[#DFCAA5] border border-[#C9A46C]/30 inline-flex items-center justify-center whitespace-nowrap shrink-0">
+            <span className="h-7 px-3 rounded-full text-xs font-bold bg-[#C9A46C]/15 text-[#8F7049] dark:text-[#DFCAA5] border border-[#C9A46C]/30 inline-flex items-center justify-center whitespace-nowrap shrink-0">
               Quality Assurance
             </span>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Official handover snaglist and digital client sign-off protocol for The Sky Villa.
           </p>
         </div>
 
-        <div className="h-9 px-3.5 rounded-xl bg-[#191D27] border border-[#262C3A] text-xs text-slate-300 inline-flex items-center gap-2 whitespace-nowrap">
+        <div className="h-9 px-3.5 rounded-xl bg-slate-100 dark:bg-[#191D27] border border-slate-200 dark:border-[#262C3A] text-xs text-slate-700 dark:text-slate-300 inline-flex items-center gap-2 whitespace-nowrap shadow-sm dark:shadow-none">
           <Award className="w-4 h-4 text-[#C9A46C] shrink-0" />
           <span className="font-semibold">Kov Interiors Snag-Free Guarantee</span>
         </div>
@@ -162,9 +162,9 @@ export default function HandoverModule({
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Checklist Panel */}
-        <div className="p-6 rounded-2xl bg-[#151821] border border-[#262C3A] space-y-4">
-          <div className="flex items-center justify-between pb-3.5 border-b border-[#232938]">
-            <h3 className="font-bold text-sm text-slate-100">Handover Quality Snaglist</h3>
+        <div className="p-6 rounded-2xl bg-white dark:bg-[#151821] border border-slate-200 dark:border-[#262C3A] space-y-4 shadow-sm dark:shadow-md transition-colors">
+          <div className="flex items-center justify-between pb-3.5 border-b border-slate-200 dark:border-[#232938]">
+            <h3 className="font-bold text-sm text-slate-900 dark:text-slate-100">Handover Quality Snaglist</h3>
             <span className="text-xs text-[#C9A46C] font-bold">
               {completedCount} of {displayRecords.length} Verified
             </span>
@@ -177,8 +177,8 @@ export default function HandoverModule({
                 onClick={() => handleToggleCheck(record)}
                 className={`p-4 rounded-xl border transition-all cursor-pointer flex items-center justify-between ${
                   record.is_completed
-                    ? 'bg-[#151D26] border-emerald-900/50 text-slate-200'
-                    : 'bg-[#181D28] border-[#252C3C] text-slate-400 hover:text-slate-300'
+                    ? 'bg-emerald-50/50 dark:bg-[#151D26] border-emerald-200 dark:border-emerald-900/50 text-slate-700 dark:text-slate-200'
+                    : 'bg-slate-50 dark:bg-[#181D28] border-slate-200 dark:border-[#252C3C] text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-300'
                 }`}
               >
                 <div className="flex items-center gap-3">
@@ -207,10 +207,10 @@ export default function HandoverModule({
         </div>
 
         {/* Digital Signature Pad */}
-        <div className="p-6 rounded-2xl bg-[#151821] border border-[#262C3A] space-y-4 flex flex-col justify-between">
+        <div className="p-6 rounded-2xl bg-white dark:bg-[#151821] border border-slate-200 dark:border-[#262C3A] space-y-4 flex flex-col justify-between shadow-sm dark:shadow-md transition-colors">
           <div>
-            <div className="flex items-center justify-between pb-3.5 border-b border-[#232938]">
-              <h3 className="font-bold text-sm text-slate-100 flex items-center gap-2">
+            <div className="flex items-center justify-between pb-3.5 border-b border-slate-200 dark:border-[#232938]">
+              <h3 className="font-bold text-sm text-slate-900 dark:text-slate-100 flex items-center gap-2">
                 <PenTool className="w-4 h-4 text-[#C9A46C]" />
                 Client Acceptance E-Signature
               </h3>
@@ -225,7 +225,7 @@ export default function HandoverModule({
               Draw signature below with your finger or mouse to approve milestone completion:
             </p>
 
-            <div className="mt-3 relative rounded-xl border border-[#2B3347] bg-[#0E1015] overflow-hidden">
+            <div className="mt-3 relative rounded-xl border border-slate-300 dark:border-[#2B3347] bg-slate-50 dark:bg-[#0E1015] overflow-hidden">
               <canvas
                 ref={canvasRef}
                 width={480}
@@ -237,17 +237,17 @@ export default function HandoverModule({
                 className="w-full h-40 cursor-crosshair"
               />
               {!hasSignature && !isSigned && (
-                <div className="absolute inset-0 pointer-events-none flex items-center justify-center text-xs text-slate-600">
+                <div className="absolute inset-0 pointer-events-none flex items-center justify-center text-xs text-slate-400 dark:text-slate-600">
                   Sign inside this box with mouse or finger
                 </div>
               )}
             </div>
           </div>
 
-          <div className="flex items-center justify-between pt-3.5 border-t border-[#232938]">
+          <div className="flex items-center justify-between pt-3.5 border-t border-slate-200 dark:border-[#232938]">
             <button
               onClick={clearSignature}
-              className="h-9 px-4 rounded-xl bg-[#1E2330] hover:bg-[#283247] text-xs font-semibold text-slate-300 hover:text-slate-100 inline-flex items-center gap-1.5 transition-colors"
+              className="h-9 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-[#1E2330] dark:hover:bg-[#283247] text-xs font-semibold text-slate-700 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-100 inline-flex items-center gap-1.5 border border-slate-200 dark:border-transparent transition-colors"
             >
               <RotateCcw className="w-3.5 h-3.5" />
               <span>Clear Pad</span>

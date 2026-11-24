@@ -102,23 +102,23 @@ export default function InventoryModule({
   return (
     <div className="space-y-6">
       {/* 1. HEADER BAR - PIXEL-PERFECT ALIGNMENT */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 p-6 rounded-2xl bg-[#151821] border border-[#262C3A] shadow-md">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 p-6 rounded-2xl bg-white dark:bg-[#151821] border border-slate-200 dark:border-[#262C3A] shadow-sm dark:shadow-md transition-colors">
         <div>
           <div className="flex items-center gap-3">
-            <h2 className="font-luxury text-xl font-bold text-slate-100 whitespace-nowrap">
+            <h2 className="font-luxury text-xl font-bold text-slate-900 dark:text-slate-100 whitespace-nowrap">
               Inventory & Site Material Stock
             </h2>
-            <span className="h-7 px-3 rounded-full text-xs font-bold bg-[#C9A46C]/15 text-[#DFCAA5] border border-[#C9A46C]/30 inline-flex items-center whitespace-nowrap">
+            <span className="h-7 px-3 rounded-full text-xs font-bold bg-[#C9A46C]/15 text-[#8F7049] dark:text-[#DFCAA5] border border-[#C9A46C]/30 inline-flex items-center whitespace-nowrap">
               Warehouse Sync Active
             </span>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Real-time material consumption, batch tracking, and threshold monitoring at The Sky Villa site.
           </p>
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="h-9 px-3.5 rounded-xl bg-[#191D27] border border-[#262C3A] text-xs text-slate-300 inline-flex items-center gap-2 whitespace-nowrap">
+          <div className="h-9 px-3.5 rounded-xl bg-slate-100 dark:bg-[#191D27] border border-slate-200 dark:border-[#262C3A] text-xs text-slate-700 dark:text-slate-300 inline-flex items-center gap-2 whitespace-nowrap shadow-sm dark:shadow-none">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
             <span className="font-semibold">Ahmedabad Central Hub Connected</span>
           </div>
@@ -127,33 +127,33 @@ export default function InventoryModule({
 
       {/* 2. CENTRAL WAREHOUSE DEPOT STATUS BAR */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div className="p-4 rounded-xl bg-[#151821] border border-[#262C3A] flex items-center gap-3.5">
+        <div className="p-4 rounded-xl bg-white dark:bg-[#151821] border border-slate-200 dark:border-[#262C3A] flex items-center gap-3.5 shadow-sm dark:shadow-none transition-colors">
           <div className="w-10 h-10 rounded-xl bg-[#C9A46C]/15 flex items-center justify-center shrink-0">
             <Warehouse className="w-5 h-5 text-[#C9A46C]" />
           </div>
           <div>
             <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Depot Location</p>
-            <p className="text-xs font-bold text-slate-100">Kov Logistics Hub &bull; Sarkhej-Sanand Rd</p>
+            <p className="text-xs font-bold text-slate-900 dark:text-slate-100">Kov Logistics Hub &bull; Sarkhej-Sanand Rd</p>
           </div>
         </div>
 
-        <div className="p-4 rounded-xl bg-[#151821] border border-[#262C3A] flex items-center gap-3.5">
+        <div className="p-4 rounded-xl bg-white dark:bg-[#151821] border border-slate-200 dark:border-[#262C3A] flex items-center gap-3.5 shadow-sm dark:shadow-none transition-colors">
           <div className="w-10 h-10 rounded-xl bg-emerald-950/60 flex items-center justify-center shrink-0">
             <Package className="w-5 h-5 text-emerald-400" />
           </div>
           <div>
             <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Site Dispatches</p>
-            <p className="text-xs font-bold text-slate-100">14 Batches Cleared &bull; 0 Damaged</p>
+            <p className="text-xs font-bold text-slate-900 dark:text-slate-100">14 Batches Cleared &bull; 0 Damaged</p>
           </div>
         </div>
 
-        <div className="p-4 rounded-xl bg-[#151821] border border-[#262C3A] flex items-center gap-3.5">
+        <div className="p-4 rounded-xl bg-white dark:bg-[#151821] border border-slate-200 dark:border-[#262C3A] flex items-center gap-3.5 shadow-sm dark:shadow-none transition-colors">
           <div className="w-10 h-10 rounded-xl bg-amber-950/60 flex items-center justify-center shrink-0">
             <AlertTriangle className="w-5 h-5 text-amber-400" />
           </div>
           <div>
             <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Threshold Monitor</p>
-            <p className="text-xs font-bold text-slate-100">1 Low Stock Alert (Asian Paints)</p>
+            <p className="text-xs font-bold text-slate-900 dark:text-slate-100">1 Low Stock Alert (Asian Paints)</p>
           </div>
         </div>
       </div>
@@ -173,10 +173,10 @@ export default function InventoryModule({
           return (
             <div
               key={item.id}
-              className={`rounded-2xl border transition-all overflow-hidden flex flex-col justify-between shadow-lg group ${
+              className={`rounded-2xl border transition-all overflow-hidden flex flex-col justify-between shadow-sm dark:shadow-lg group ${
                 isLow
-                  ? 'bg-[#18151D] border-rose-900/50'
-                  : 'bg-[#151821] border-[#262C3A] hover:border-[#C9A46C]/60'
+                  ? 'bg-rose-50/40 dark:bg-[#18151D] border-rose-200 dark:border-rose-900/50'
+                  : 'bg-white dark:bg-[#151821] border-slate-200 dark:border-[#262C3A] hover:border-[#B58E50] dark:hover:border-[#C9A46C]/60'
               }`}
             >
               {/* Photo & Status Banner */}
@@ -186,7 +186,7 @@ export default function InventoryModule({
                   alt={item.material_name}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#151821] via-transparent to-black/40" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/30" />
 
                 <div className="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md text-[10px] font-bold text-[#F1E5D3] border border-white/10 uppercase tracking-wider">
                   {item.brand}
@@ -217,9 +217,9 @@ export default function InventoryModule({
               <div className="p-5 space-y-4">
                 <div className="space-y-2">
                   <div className="flex items-center justify-between text-xs">
-                    <span className="text-slate-300 font-semibold">
+                    <span className="text-slate-700 dark:text-slate-300 font-semibold">
                       Current Stock On Site:{' '}
-                      <span className="text-white font-mono font-bold text-sm">
+                      <span className="text-slate-900 dark:text-white font-mono font-bold text-sm">
                         {current} {item.unit}
                       </span>
                     </span>
@@ -228,7 +228,7 @@ export default function InventoryModule({
                     </span>
                   </div>
 
-                  <div className="w-full bg-[#1E2330] h-2.5 rounded-full overflow-hidden">
+                  <div className="w-full bg-slate-200 dark:bg-[#1E2330] h-2.5 rounded-full overflow-hidden">
                     <div
                       className={`h-full rounded-full transition-all duration-500 ${
                         isLow ? 'bg-rose-500' : 'bg-gradient-to-r from-[#C9A46C] to-emerald-400'
@@ -238,7 +238,7 @@ export default function InventoryModule({
                   </div>
                 </div>
 
-                <div className="pt-3 border-t border-[#232938] flex items-center justify-between text-xs">
+                <div className="pt-3 border-t border-slate-200 dark:border-[#232938] flex items-center justify-between text-xs">
                   <span className="text-[11px] text-slate-400 font-mono">
                     Min Threshold: {threshold} {item.unit}
                   </span>
@@ -248,7 +248,7 @@ export default function InventoryModule({
                     <button
                       onClick={() => handleAdjustStock(item, -5)}
                       disabled={updatingId === item.id || current <= 0}
-                      className="h-7 px-2.5 rounded-lg bg-[#1E2330] hover:bg-[#283247] text-slate-200 disabled:opacity-30 text-xs font-mono font-bold inline-flex items-center justify-center transition-colors"
+                      className="h-7 px-2.5 rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-[#1E2330] dark:hover:bg-[#283247] text-slate-700 dark:text-slate-200 disabled:opacity-30 text-xs font-mono font-bold inline-flex items-center justify-center border border-slate-200 dark:border-transparent transition-colors"
                     >
                       -5
                     </button>

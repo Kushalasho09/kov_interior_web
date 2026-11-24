@@ -157,58 +157,58 @@ export default function OverviewModule({
       {/* 2. EXECUTIVE METRIC KPI TILES */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
         {/* Total Contract Value */}
-        <div className="p-5 rounded-2xl bg-[#151821] border border-[#262C3A] hover:border-[#C9A46C]/50 transition-all shadow-md group">
-          <div className="flex items-center justify-between text-xs font-bold tracking-wider text-slate-400">
+        <div className="p-5 rounded-2xl bg-white dark:bg-[#151821] border border-slate-200 dark:border-[#262C3A] hover:border-[#B58E50] dark:hover:border-[#C9A46C]/50 transition-all shadow-sm dark:shadow-md group">
+          <div className="flex items-center justify-between text-xs font-bold tracking-wider text-slate-500 dark:text-slate-400">
             <span>CONTRACT VALUE</span>
-            <div className="w-8 h-8 rounded-lg bg-[#C9A46C]/15 flex items-center justify-center">
-              <IndianRupee className="w-4 h-4 text-[#C9A46C]" />
+            <div className="w-8 h-8 rounded-lg bg-amber-50 dark:bg-[#C9A46C]/15 flex items-center justify-center">
+              <IndianRupee className="w-4 h-4 text-[#B58E50] dark:text-[#C9A46C]" />
             </div>
           </div>
-          <p className="font-luxury text-2xl font-bold text-slate-100 mt-3">{formattedBudget}</p>
-          <div className="flex items-center justify-between mt-3 text-xs text-slate-400 pt-3 border-t border-[#202534]">
+          <p className="font-luxury text-2xl font-bold text-slate-900 dark:text-slate-100 mt-3">{formattedBudget}</p>
+          <div className="flex items-center justify-between mt-3 text-xs text-slate-500 dark:text-slate-400 pt-3 border-t border-slate-100 dark:border-[#202534]">
             <span>Realized: {formattedPaid}</span>
-            <span className="text-emerald-400 font-bold">
+            <span className="text-emerald-600 dark:text-emerald-400 font-bold">
               {Math.round((paidAmount / totalBudget) * 100)}% Collected
             </span>
           </div>
         </div>
 
         {/* Site Completion Status */}
-        <div className="p-5 rounded-2xl bg-[#151821] border border-[#262C3A] hover:border-[#C9A46C]/50 transition-all shadow-md">
-          <div className="flex items-center justify-between text-xs font-bold tracking-wider text-slate-400">
+        <div className="p-5 rounded-2xl bg-white dark:bg-[#151821] border border-slate-200 dark:border-[#262C3A] hover:border-[#B58E50] dark:hover:border-[#C9A46C]/50 transition-all shadow-sm dark:shadow-md">
+          <div className="flex items-center justify-between text-xs font-bold tracking-wider text-slate-500 dark:text-slate-400">
             <span>SITE PROGRESS</span>
-            <div className="w-8 h-8 rounded-lg bg-emerald-950/60 flex items-center justify-center">
-              <TrendingUp className="w-4 h-4 text-emerald-400" />
+            <div className="w-8 h-8 rounded-lg bg-emerald-50 dark:bg-emerald-950/60 flex items-center justify-center">
+              <TrendingUp className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
             </div>
           </div>
-          <p className="font-luxury text-2xl font-bold text-slate-100 mt-3">
+          <p className="font-luxury text-2xl font-bold text-slate-900 dark:text-slate-100 mt-3">
             {project?.completion_percentage || 48}% Complete
           </p>
-          <div className="w-full bg-[#202636] h-2 rounded-full mt-3 overflow-hidden">
+          <div className="w-full bg-slate-100 dark:bg-[#202636] h-2 rounded-full mt-3 overflow-hidden">
             <div
-              className="bg-gradient-to-r from-[#C9A46C] to-emerald-400 h-full rounded-full transition-all duration-700"
+              className="bg-gradient-to-r from-[#B58E50] to-emerald-500 dark:from-[#C9A46C] dark:to-emerald-400 h-full rounded-full transition-all duration-700"
               style={{ width: `${project?.completion_percentage || 48}%` }}
             />
           </div>
-          <div className="flex items-center justify-between mt-2.5 text-[11px] text-slate-400">
+          <div className="flex items-center justify-between mt-2.5 text-[11px] text-slate-500 dark:text-slate-400">
             <span>Phase 3 of 5</span>
-            <span className="text-[#C9A46C] font-semibold">Carpentry & Framing</span>
+            <span className="text-[#B58E50] dark:text-[#C9A46C] font-semibold">Carpentry & Framing</span>
           </div>
         </div>
 
         {/* CRM Leads Pipeline */}
         <div
           onClick={() => setActiveTab('crm')}
-          className="p-5 rounded-2xl bg-[#151821] border border-[#262C3A] hover:border-[#C9A46C]/60 cursor-pointer transition-all shadow-md group"
+          className="p-5 rounded-2xl bg-white dark:bg-[#151821] border border-slate-200 dark:border-[#262C3A] hover:border-[#B58E50] dark:hover:border-[#C9A46C]/60 cursor-pointer transition-all shadow-sm dark:shadow-md group"
         >
-          <div className="flex items-center justify-between text-xs font-bold tracking-wider text-slate-400">
+          <div className="flex items-center justify-between text-xs font-bold tracking-wider text-slate-500 dark:text-slate-400">
             <span>PIPELINE LEADS</span>
-            <div className="w-8 h-8 rounded-lg bg-[#C9A46C]/15 flex items-center justify-center">
-              <Users className="w-4 h-4 text-[#C9A46C] group-hover:scale-110 transition-transform" />
+            <div className="w-8 h-8 rounded-lg bg-amber-50 dark:bg-[#C9A46C]/15 flex items-center justify-center">
+              <Users className="w-4 h-4 text-[#B58E50] dark:text-[#C9A46C] group-hover:scale-110 transition-transform" />
             </div>
           </div>
-          <p className="font-luxury text-2xl font-bold text-slate-100 mt-3">{leads.length} Active HNIs</p>
-          <div className="flex items-center justify-between mt-3 text-xs text-[#C9A46C] pt-3 border-t border-[#202534] font-semibold">
+          <p className="font-luxury text-2xl font-bold text-slate-900 dark:text-slate-100 mt-3">{leads.length} Active HNIs</p>
+          <div className="flex items-center justify-between mt-3 text-xs text-[#B58E50] dark:text-[#C9A46C] pt-3 border-t border-slate-100 dark:border-[#202534] font-semibold">
             <span>₹2.5 Cr Ahmedabad Pipeline</span>
             <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
           </div>
@@ -217,24 +217,24 @@ export default function OverviewModule({
         {/* Today's Labor Attendance */}
         <div
           onClick={() => setActiveTab('hrms')}
-          className="p-5 rounded-2xl bg-[#151821] border border-[#262C3A] hover:border-[#C9A46C]/60 cursor-pointer transition-all shadow-md group"
+          className="p-5 rounded-2xl bg-white dark:bg-[#151821] border border-slate-200 dark:border-[#262C3A] hover:border-[#B58E50] dark:hover:border-[#C9A46C]/60 cursor-pointer transition-all shadow-sm dark:shadow-md group"
         >
-          <div className="flex items-center justify-between text-xs font-bold tracking-wider text-slate-400">
+          <div className="flex items-center justify-between text-xs font-bold tracking-wider text-slate-500 dark:text-slate-400">
             <span>ON-SITE ARTISANS</span>
-            <div className="w-8 h-8 rounded-lg bg-amber-950/60 flex items-center justify-center">
-              <HardHat className="w-4 h-4 text-amber-400 group-hover:scale-110 transition-transform" />
+            <div className="w-8 h-8 rounded-lg bg-amber-50 dark:bg-amber-950/60 flex items-center justify-center">
+              <HardHat className="w-4 h-4 text-amber-600 dark:text-amber-400 group-hover:scale-110 transition-transform" />
             </div>
           </div>
-          <p className="font-luxury text-2xl font-bold text-slate-100 mt-3">
+          <p className="font-luxury text-2xl font-bold text-slate-900 dark:text-slate-100 mt-3">
             {(manpower?.carpenters || 4) +
               (manpower?.electricians || 2) +
               (manpower?.painters || 0) +
               (manpower?.helpers || 3)}{' '}
             Craftsmen
           </p>
-          <div className="flex items-center justify-between mt-3 text-xs text-slate-400 pt-3 border-t border-[#202534]">
+          <div className="flex items-center justify-between mt-3 text-xs text-slate-500 dark:text-slate-400 pt-3 border-t border-slate-100 dark:border-[#202534]">
             <span>{manpower?.carpenters || 4} Joinery • {manpower?.electricians || 2} MEP</span>
-            <span className="text-amber-400 font-bold">Muster Active</span>
+            <span className="text-amber-600 dark:text-amber-400 font-bold">Muster Active</span>
           </div>
         </div>
       </div>
@@ -243,16 +243,16 @@ export default function OverviewModule({
       <div className="space-y-4">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="font-luxury text-xl font-bold text-slate-100">
-              Active Room Perspectives & Joinery
+            <h2 className="font-luxury text-xl font-bold text-slate-900 dark:text-slate-100">
+              Active Room Perspectives &amp; Joinery
             </h2>
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-slate-500 dark:text-slate-400">
               High-resolution 3D perspectives and material specifications for The Sky Villa
             </p>
           </div>
           <button
             onClick={() => setActiveTab('design')}
-            className="text-xs font-bold text-[#C9A46C] hover:underline flex items-center gap-1"
+            className="text-xs font-bold text-[#B58E50] dark:text-[#C9A46C] hover:underline flex items-center gap-1"
           >
             Open Design Canvas
             <ArrowUpRight className="w-3.5 h-3.5" />
@@ -263,9 +263,9 @@ export default function OverviewModule({
           {roomPortfolios.map((room, idx) => (
             <div
               key={idx}
-              className="rounded-2xl bg-[#151821] border border-[#262C3A] overflow-hidden hover:border-[#C9A46C]/60 transition-all shadow-lg flex flex-col group"
+              className="rounded-2xl bg-white dark:bg-[#151821] border border-slate-200 dark:border-[#262C3A] overflow-hidden hover:border-[#B58E50] dark:hover:border-[#C9A46C]/60 transition-all shadow-sm dark:shadow-lg flex flex-col group"
             >
-              <div className="relative aspect-[16/10] overflow-hidden bg-black">
+              <div className="relative aspect-[16/10] overflow-hidden bg-slate-100 dark:bg-black">
                 <img
                   src={room.img}
                   alt={room.title}
@@ -274,22 +274,22 @@ export default function OverviewModule({
                 <div className="absolute top-3 right-3 px-2.5 py-1 rounded-full bg-black/75 backdrop-blur-md text-[10px] font-bold text-[#F1E5D3] border border-white/10">
                   {room.status}
                 </div>
-                <div className="absolute bottom-3 left-3 px-2 py-0.5 rounded-md bg-[#101217]/90 text-[10px] font-semibold text-[#C9A46C] border border-[#C9A46C]/30">
+                <div className="absolute bottom-3 left-3 px-2 py-0.5 rounded-md bg-white/90 dark:bg-[#101217]/90 text-[10px] font-semibold text-[#B58E50] dark:text-[#C9A46C] border border-slate-200 dark:border-[#C9A46C]/30 shadow-sm">
                   {room.area}
                 </div>
               </div>
 
               <div className="p-4 flex-1 flex flex-col justify-between space-y-2">
                 <div>
-                  <h3 className="font-bold text-sm text-slate-100">{room.title}</h3>
-                  <p className="text-xs text-slate-400 mt-1 line-clamp-2 leading-relaxed">
+                  <h3 className="font-bold text-sm text-slate-900 dark:text-slate-100">{room.title}</h3>
+                  <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 line-clamp-2 leading-relaxed">
                     {room.spec}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-[#202534] flex items-center justify-between text-xs text-slate-400">
+                <div className="pt-3 border-t border-slate-100 dark:border-[#202534] flex items-center justify-between text-xs text-slate-500 dark:text-slate-400">
                   <span>Kov Interiors Ahmedabad</span>
-                  <span className="text-[#C9A46C] font-semibold">View Specs &rarr;</span>
+                  <span className="text-[#B58E50] dark:text-[#C9A46C] font-semibold">View Specs &rarr;</span>
                 </div>
               </div>
             </div>
@@ -300,17 +300,17 @@ export default function OverviewModule({
       {/* 4. EXECUTION TIMELINE & RECENT SITE UPDATES */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Project Timeline & Phases (2 Columns) */}
-        <div className="lg:col-span-2 p-6 rounded-2xl bg-[#151821] border border-[#262C3A]">
+        <div className="lg:col-span-2 p-6 rounded-2xl bg-white dark:bg-[#151821] border border-slate-200 dark:border-[#262C3A] shadow-sm dark:shadow-md">
           <div className="flex items-center justify-between mb-5">
             <div>
-              <h3 className="font-luxury text-lg font-bold text-slate-100">
+              <h3 className="font-luxury text-lg font-bold text-slate-900 dark:text-slate-100">
                 Critical Path Execution Schedule
               </h3>
-              <p className="text-xs text-slate-400">Ahmedabad site milestones & dependencies</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Ahmedabad site milestones &amp; dependencies</p>
             </div>
             <button
               onClick={() => setActiveTab('project_mgmt')}
-              className="text-xs font-bold text-[#C9A46C] hover:underline flex items-center gap-1"
+              className="text-xs font-bold text-[#B58E50] dark:text-[#C9A46C] hover:underline flex items-center gap-1"
             >
               Full Schedule
               <ArrowUpRight className="w-3.5 h-3.5" />
@@ -321,36 +321,36 @@ export default function OverviewModule({
             {phases.map((phase) => (
               <div
                 key={phase.id}
-                className="p-3.5 rounded-xl bg-[#191D27] border border-[#262C3A] flex flex-col sm:flex-row sm:items-center justify-between gap-3"
+                className="p-3.5 rounded-xl bg-slate-50 dark:bg-[#191D27] border border-slate-200 dark:border-[#262C3A] flex flex-col sm:flex-row sm:items-center justify-between gap-3"
               >
                 <div className="flex items-center gap-3">
                   {phase.status === 'completed' ? (
-                    <CheckCircle2 className="w-5 h-5 text-emerald-400 shrink-0" />
+                    <CheckCircle2 className="w-5 h-5 text-emerald-600 dark:text-emerald-400 shrink-0" />
                   ) : phase.status === 'in_progress' ? (
-                    <Clock className="w-5 h-5 text-[#C9A46C] animate-pulse shrink-0" />
+                    <Clock className="w-5 h-5 text-[#B58E50] dark:text-[#C9A46C] animate-pulse shrink-0" />
                   ) : (
-                    <div className="w-5 h-5 rounded-full border border-slate-600 shrink-0" />
+                    <div className="w-5 h-5 rounded-full border border-slate-300 dark:border-slate-600 shrink-0" />
                   )}
                   <div>
-                    <span className="text-xs font-bold text-slate-100">{phase.phase_name}</span>
-                    <p className="text-[10px] text-slate-400">
+                    <span className="text-xs font-bold text-slate-900 dark:text-slate-100">{phase.phase_name}</span>
+                    <p className="text-[10px] text-slate-500 dark:text-slate-400">
                       {phase.start_date || 'Day 1'} &rarr; {phase.end_date || 'Day 45'}
                     </p>
                   </div>
                 </div>
 
                 <div className="flex items-center gap-3 w-full sm:w-56">
-                  <div className="flex-1 bg-[#232838] h-2 rounded-full overflow-hidden">
+                  <div className="flex-1 bg-slate-200 dark:bg-[#232838] h-2 rounded-full overflow-hidden">
                     <div
                       className={`h-full rounded-full transition-all duration-500 ${
                         phase.status === 'completed'
                           ? 'bg-emerald-500'
-                          : 'bg-gradient-to-r from-[#C9A46C] to-amber-400'
+                          : 'bg-gradient-to-r from-[#B58E50] to-amber-500 dark:from-[#C9A46C] dark:to-amber-400'
                       }`}
                       style={{ width: `${phase.progress_percent}%` }}
                     />
                   </div>
-                  <span className="text-xs font-mono font-bold text-slate-300 w-10 text-right">
+                  <span className="text-xs font-mono font-bold text-slate-700 dark:text-slate-300 w-10 text-right">
                     {phase.progress_percent}%
                   </span>
                 </div>
@@ -360,21 +360,21 @@ export default function OverviewModule({
         </div>
 
         {/* Latest Site Photo Card (1 Column) */}
-        <div className="p-6 rounded-2xl bg-[#151821] border border-[#262C3A] flex flex-col justify-between">
+        <div className="p-6 rounded-2xl bg-white dark:bg-[#151821] border border-slate-200 dark:border-[#262C3A] shadow-sm dark:shadow-md flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-luxury text-base font-bold text-slate-100 flex items-center gap-2">
-                <Camera className="w-4 h-4 text-[#C9A46C]" />
+              <h3 className="font-luxury text-base font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2">
+                <Camera className="w-4 h-4 text-[#B58E50] dark:text-[#C9A46C]" />
                 Live Site Snapshot
               </h3>
-              <span className="text-[10px] text-emerald-400 font-bold px-2 py-0.5 rounded-full bg-emerald-950/80 border border-emerald-800/60">
+              <span className="text-[10px] text-emerald-700 dark:text-emerald-400 font-bold px-2 py-0.5 rounded-full bg-emerald-50 dark:bg-emerald-950/80 border border-emerald-200 dark:border-emerald-800/60">
                 Live Feed
               </span>
             </div>
 
             {siteUpdates.length > 0 ? (
               <div className="space-y-3">
-                <div className="relative rounded-xl overflow-hidden border border-[#2C3447] aspect-video">
+                <div className="relative rounded-xl overflow-hidden border border-slate-200 dark:border-[#2C3447] aspect-video">
                   <img
                     src={siteUpdates[0].photo_url || '/assets/projects/living_room.webp'}
                     alt="Site update"
@@ -385,18 +385,18 @@ export default function OverviewModule({
                   </div>
                 </div>
 
-                <p className="text-xs text-slate-200 line-clamp-2 leading-relaxed">
+                <p className="text-xs text-slate-700 dark:text-slate-200 line-clamp-2 leading-relaxed">
                   {siteUpdates[0].caption}
                 </p>
 
-                <div className="text-[11px] text-slate-400 space-y-1 pt-2 border-t border-[#232938]">
+                <div className="text-[11px] text-slate-500 dark:text-slate-400 space-y-1 pt-2 border-t border-slate-100 dark:border-[#232938]">
                   <p className="flex justify-between">
                     <span>Supervisor:</span>
-                    <span className="text-slate-100 font-semibold">{siteUpdates[0].supervisor_name}</span>
+                    <span className="text-slate-900 dark:text-slate-100 font-semibold">{siteUpdates[0].supervisor_name}</span>
                   </p>
                   <p className="flex justify-between">
                     <span>Location:</span>
-                    <span className="text-[#C9A46C] font-semibold">Prahlad Nagar Site</span>
+                    <span className="text-[#B58E50] dark:text-[#C9A46C] font-semibold">Prahlad Nagar Site</span>
                   </p>
                 </div>
               </div>
@@ -407,7 +407,7 @@ export default function OverviewModule({
 
           <button
             onClick={() => setActiveTab('site_tracking')}
-            className="w-full mt-4 py-2.5 rounded-xl bg-[#1E2330] hover:bg-[#272D3E] border border-[#2D364A] text-xs font-bold text-[#F1E5D3] transition-colors"
+            className="w-full mt-4 py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 dark:bg-[#1E2330] dark:hover:bg-[#272D3E] border border-slate-200 dark:border-[#2D364A] text-xs font-bold dark:text-[#F1E5D3] transition-colors"
           >
             Open All Site Photos ({siteUpdates.length})
           </button>

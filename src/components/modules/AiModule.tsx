@@ -52,10 +52,10 @@ export default function AiModule({
   return (
     <div className="space-y-6">
       {/* 1. HEADER BAR - STRICT PIXEL-PERFECT ALIGNMENT */}
-      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 p-6 rounded-2xl bg-[#151821] border border-[#262C3A] shadow-md">
+      <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 p-6 rounded-2xl bg-white dark:bg-[#151821] border border-slate-200 dark:border-[#262C3A] shadow-sm dark:shadow-md transition-colors">
         <div>
           <div className="flex items-center gap-3">
-            <h2 className="font-luxury text-xl font-bold text-slate-100 flex items-center gap-2 whitespace-nowrap">
+            <h2 className="font-luxury text-xl font-bold text-slate-900 dark:text-slate-100 flex items-center gap-2 whitespace-nowrap">
               <Sparkles className="w-5 h-5 text-purple-400 shrink-0" />
               <span>AI Site Update Studio</span>
             </h2>
@@ -63,14 +63,14 @@ export default function AiModule({
               Gemini & GPT Engine
             </span>
           </div>
-          <p className="text-xs text-slate-400 mt-1">
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
             Instantly synthesizes site workforce, photos, and engineer notes into an executive WhatsApp client report.
           </p>
         </div>
 
         {/* Action Controls - Strictly h-9 */}
         <div className="flex flex-wrap items-center gap-3">
-          <div className="h-9 flex items-center bg-[#191D27] border border-[#262C3A] rounded-xl p-0.5 text-xs">
+          <div className="h-9 flex items-center bg-slate-100 dark:bg-[#191D27] border border-slate-200 dark:border-[#262C3A] rounded-xl p-0.5 text-xs">
             <button
               onClick={() => {
                 setClientLanguage('english');
@@ -79,7 +79,7 @@ export default function AiModule({
               className={`h-full px-3 rounded-lg font-bold transition-all whitespace-nowrap inline-flex items-center ${
                 clientLanguage === 'english'
                   ? 'bg-purple-600 text-white shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
               }`}
             >
               English
@@ -92,7 +92,7 @@ export default function AiModule({
               className={`h-full px-3 rounded-lg font-bold transition-all whitespace-nowrap inline-flex items-center ${
                 clientLanguage === 'gujlish'
                   ? 'bg-purple-600 text-white shadow-sm'
-                  : 'text-slate-400 hover:text-slate-200'
+                  : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-slate-200'
               }`}
             >
               Gujarati
@@ -112,10 +112,10 @@ export default function AiModule({
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Editor Area */}
-        <div className="p-6 rounded-2xl bg-[#151821] border border-[#262C3A] space-y-4 flex flex-col justify-between">
+        <div className="p-6 rounded-2xl bg-white dark:bg-[#151821] border border-slate-200 dark:border-[#262C3A] space-y-4 flex flex-col justify-between shadow-sm dark:shadow-md transition-colors">
           <div className="space-y-3">
-            <div className="flex items-center justify-between pb-3.5 border-b border-[#232938]">
-              <span className="text-xs font-bold text-slate-200 flex items-center gap-2">
+            <div className="flex items-center justify-between pb-3.5 border-b border-slate-200 dark:border-[#232938]">
+              <span className="text-xs font-bold text-slate-900 dark:text-slate-200 flex items-center gap-2">
                 <Bot className="w-4 h-4 text-purple-400" />
                 Generated Client Briefing
               </span>
@@ -126,18 +126,18 @@ export default function AiModule({
               rows={12}
               value={aiText}
               onChange={(e) => setAiText(e.target.value)}
-              className="w-full bg-[#11141C] border border-[#262C3D] rounded-xl p-4 text-xs text-slate-200 font-mono leading-relaxed focus:outline-none focus:border-purple-500"
+              className="w-full bg-slate-50 dark:bg-[#11141C] border border-slate-200 dark:border-[#262C3D] rounded-xl p-4 text-xs text-slate-800 dark:text-slate-200 font-mono leading-relaxed focus:outline-none focus:border-purple-500"
             />
           </div>
 
-          <div className="flex items-center justify-between pt-3.5 border-t border-[#232938]">
-            <span className="text-xs text-slate-400">
+          <div className="flex items-center justify-between pt-3.5 border-t border-slate-200 dark:border-[#232938]">
+            <span className="text-xs text-slate-500 dark:text-slate-400">
               Ready to send to {project?.client_name || 'Rajeshbhai Patel'}
             </span>
 
             <button
               onClick={handleCopy}
-              className="h-9 px-4 rounded-xl bg-[#202738] hover:bg-[#283247] border border-[#303A52] text-xs font-bold text-slate-100 inline-flex items-center gap-2 transition-colors shadow-sm"
+              className="h-9 px-4 rounded-xl bg-slate-100 hover:bg-slate-200 dark:bg-[#202738] dark:hover:bg-[#283247] border border-slate-200 dark:border-[#303A52] text-xs font-bold text-slate-800 dark:text-slate-100 inline-flex items-center gap-2 transition-colors shadow-sm"
             >
               {copied ? (
                 <>
@@ -155,7 +155,7 @@ export default function AiModule({
         </div>
 
         {/* WhatsApp Mobile Mockup Preview */}
-        <div className="p-6 rounded-2xl bg-[#151821] border border-[#262C3A] flex flex-col items-center justify-center">
+        <div className="p-6 rounded-2xl bg-white dark:bg-[#151821] border border-slate-200 dark:border-[#262C3A] flex flex-col items-center justify-center shadow-sm dark:shadow-md transition-colors">
           <div className="w-full max-w-sm rounded-3xl border-4 border-[#2B3346] bg-[#0C1317] overflow-hidden shadow-2xl flex flex-col">
             {/* WhatsApp Header */}
             <div className="bg-[#1F2C34] p-3.5 flex items-center gap-3 border-b border-[#2A3942]">
