@@ -44,7 +44,7 @@ export function WhoWeServeDropdown({
     },
     {
       title: 'Contractors',
-      subtitle: 'Site progress, tasks, and payments',
+      subtitle: 'Site Progress, tasks, and payments',
       icon: Briefcase,
     },
     {
@@ -61,7 +61,7 @@ export function WhoWeServeDropdown({
 
   return (
     <div
-      className="absolute top-full left-1/2 -translate-x-1/2 w-80 z-50 bg-white dark:bg-[#121620] border border-slate-200 dark:border-[#242A3B] rounded-2xl shadow-xl p-3 animate-in fade-in slide-in-from-top-2 duration-150"
+      className="absolute top-full left-0 mt-2 w-84 sm:w-96 z-50 bg-white dark:bg-[#10131B] border border-slate-200 dark:border-[#252C3D] rounded-2xl shadow-2xl p-2.5 animate-in fade-in slide-in-from-top-2 duration-150"
       onMouseLeave={onClose}
     >
       <div className="space-y-1">
@@ -74,16 +74,18 @@ export function WhoWeServeDropdown({
                 onSelectAudience(item.title);
                 onClose();
               }}
-              className="w-full flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-[#1A202E] text-left transition-colors group"
+              className="w-full flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-[#171C27] text-left transition-colors group"
             >
-              <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-[#181D2A] border border-slate-200 dark:border-[#2B3347] flex items-center justify-center shrink-0 text-[#B58E50] dark:text-[#C9A46C] group-hover:scale-105 transition-all">
+              {/* Soft Blue Icon Container */}
+              <div className="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/40 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                 <Icon className="w-4 h-4" />
               </div>
-              <div className="min-w-0">
-                <p className="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-[#B58E50] dark:group-hover:text-[#DFCAA5] transition-colors truncate">
+
+              <div className="min-w-0 flex-1">
+                <p className="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">
                   {item.title}
                 </p>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1">
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1 mt-0.5">
                   {item.subtitle}
                 </p>
               </div>
@@ -112,26 +114,26 @@ export function ResourcesDropdown({
     {
       id: 'blogs' as const,
       title: 'Blogs',
-      subtitle: 'Guides on running & scaling turnkey design studios',
+      subtitle: 'Guides on running & scaling studios',
       icon: BookOpen,
     },
     {
       id: 'casestudies' as const,
       title: 'Case Studies',
-      subtitle: 'See how teams deliver luxury projects faster (Sky Villa)',
+      subtitle: 'See how teams deliver projects faster',
       icon: FileText,
     },
     {
       id: 'faqs' as const,
       title: 'FAQs',
-      subtitle: 'Quick answers for architecture & field sync workflows',
+      subtitle: 'Quick product & workflow answers',
       icon: HelpCircle,
     },
   ];
 
   return (
     <div
-      className="absolute top-full left-1/2 -translate-x-1/2 w-80 z-50 bg-white dark:bg-[#121620] border border-slate-200 dark:border-[#242A3B] rounded-2xl shadow-xl p-3 animate-in fade-in slide-in-from-top-2 duration-150"
+      className="absolute top-full left-0 mt-2 w-80 sm:w-88 z-50 bg-white dark:bg-[#10131B] border border-slate-200 dark:border-[#252C3D] rounded-2xl shadow-2xl p-2.5 animate-in fade-in slide-in-from-top-2 duration-150"
       onMouseLeave={onClose}
     >
       <div className="space-y-1">
@@ -144,16 +146,18 @@ export function ResourcesDropdown({
                 onSelectResource(item.id);
                 onClose();
               }}
-              className="w-full flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-[#1A202E] text-left transition-colors group"
+              className="w-full flex items-start gap-3 p-2.5 rounded-xl hover:bg-slate-50 dark:hover:bg-[#171C27] text-left transition-colors group"
             >
-              <div className="w-8 h-8 rounded-lg bg-slate-100 dark:bg-[#181D2A] border border-slate-200 dark:border-[#2B3347] flex items-center justify-center shrink-0 text-[#B58E50] dark:text-[#C9A46C] group-hover:scale-105 transition-all">
+              {/* Soft Blue Icon Container */}
+              <div className="w-8 h-8 rounded-lg bg-blue-50 dark:bg-blue-950/60 text-blue-600 dark:text-blue-400 border border-blue-100 dark:border-blue-900/40 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform">
                 <Icon className="w-4 h-4" />
               </div>
-              <div className="min-w-0">
-                <p className="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-[#B58E50] dark:group-hover:text-[#DFCAA5] transition-colors truncate">
+
+              <div className="min-w-0 flex-1">
+                <p className="text-xs font-bold text-slate-800 dark:text-slate-200 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors truncate">
                   {item.title}
                 </p>
-                <p className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1">
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 line-clamp-1 mt-0.5">
                   {item.subtitle}
                 </p>
               </div>
