@@ -388,7 +388,7 @@ export default function MegaMenu({
     <>
       {/* Invisible Click-outside Backdrop */}
       <div
-        className="fixed inset-0 z-40 bg-black/40 backdrop-blur-[2px] transition-opacity animate-in fade-in duration-200"
+        className="fixed inset-0 top-20 z-40 bg-black/40 backdrop-blur-[2px] transition-opacity animate-in fade-in duration-200"
         onClick={onClose}
       />
 

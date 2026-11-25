@@ -27,13 +27,13 @@ export default function LandingNavbar({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const lastHoverOpenRef = useRef<number>(0);
+  const openedByHoverRef = useRef<boolean>(false);
 
   const handleMouseEnter = (menu: 'features' | 'who' | 'resources') => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setActiveMenu((prev) => {
       if (prev !== menu) {
-        lastHoverOpenRef.current = Date.now();
+        openedByHoverRef.current = true;
       }
       return menu;
     });
@@ -41,6 +41,7 @@ export default function LandingNavbar({
 
   const handleMouseLeave = () => {
     timeoutRef.current = setTimeout(() => {
+      openedByHoverRef.current = false;
       setActiveMenu(null);
     }, 200);
   };
@@ -49,18 +50,20 @@ export default function LandingNavbar({
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
     setActiveMenu((prev) => {
       if (prev === menu) {
-        // Keep open if just opened by hover/tap right before click
-        if (Date.now() - lastHoverOpenRef.current < 400) {
+        if (openedByHoverRef.current) {
+          openedByHoverRef.current = false;
           return menu;
         }
         return null;
       }
+      openedByHoverRef.current = false;
       return menu;
     });
   };
 
   const closeAllMenus = () => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    openedByHoverRef.current = false;
     setActiveMenu(null);
   };
 
@@ -75,7 +78,7 @@ export default function LandingNavbar({
 
   return (
     <header className="sticky top-0 z-40 bg-white/95 dark:bg-[#0D0F13]/95 backdrop-blur-md border-b border-slate-200 dark:border-[#202534] select-none transition-colors">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <div className="relative z-50 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
         {/* Brand Logo */}
         <div
           onClick={() => {
