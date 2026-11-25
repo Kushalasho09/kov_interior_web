@@ -27,10 +27,16 @@ export default function LandingNavbar({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+  const lastHoverOpenRef = useRef<number>(0);
 
   const handleMouseEnter = (menu: 'features' | 'who' | 'resources') => {
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
-    setActiveMenu(menu);
+    setActiveMenu((prev) => {
+      if (prev !== menu) {
+        lastHoverOpenRef.current = Date.now();
+      }
+      return menu;
+    });
   };
 
   const handleMouseLeave = () => {
@@ -40,7 +46,17 @@ export default function LandingNavbar({
   };
 
   const toggleMenu = (menu: 'features' | 'who' | 'resources') => {
-    setActiveMenu((prev) => (prev === menu ? null : menu));
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    setActiveMenu((prev) => {
+      if (prev === menu) {
+        // Keep open if just opened by hover/tap right before click
+        if (Date.now() - lastHoverOpenRef.current < 400) {
+          return menu;
+        }
+        return null;
+      }
+      return menu;
+    });
   };
 
   const closeAllMenus = () => {
@@ -262,6 +278,8 @@ export default function LandingNavbar({
         onClose={closeAllMenus}
         onSelectActiveFeature={onSelectActiveFeature}
         onSelectLockedFeature={onSelectLockedFeature}
+        onMouseEnter={() => handleMouseEnter('features')}
+        onMouseLeave={handleMouseLeave}
       />
 
       {/* Mobile Menu Panel */}

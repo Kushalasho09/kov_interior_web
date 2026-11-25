@@ -370,6 +370,8 @@ interface MegaMenuProps {
   onClose: () => void;
   onSelectActiveFeature: (tabId: ActiveTab) => void;
   onSelectLockedFeature: (feature: LockedFeatureInfo) => void;
+  onMouseEnter?: () => void;
+  onMouseLeave?: () => void;
 }
 
 export default function MegaMenu({
@@ -377,6 +379,8 @@ export default function MegaMenu({
   onClose,
   onSelectActiveFeature,
   onSelectLockedFeature,
+  onMouseEnter,
+  onMouseLeave,
 }: MegaMenuProps) {
   if (!isOpen) return null;
 
@@ -393,7 +397,11 @@ export default function MegaMenu({
         className="fixed top-20 left-0 right-0 z-50 flex justify-center px-4 sm:px-6 pointer-events-none"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="w-full max-w-7xl bg-white dark:bg-[#10131B] border border-slate-200 dark:border-[#252C3D] rounded-3xl shadow-2xl p-6 sm:p-8 max-h-[calc(100vh-6rem)] overflow-y-auto pointer-events-auto animate-in fade-in slide-in-from-top-3 duration-200">
+        <div
+          className="w-full max-w-7xl bg-white dark:bg-[#10131B] border border-slate-200 dark:border-[#252C3D] rounded-3xl shadow-2xl p-6 sm:p-8 max-h-[calc(100vh-6rem)] overflow-y-auto pointer-events-auto animate-in fade-in slide-in-from-top-3 duration-200"
+          onMouseEnter={onMouseEnter}
+          onMouseLeave={onMouseLeave}
+        >
           {/* Top Bar with Title and Close Button */}
           <div className="flex items-center justify-between pb-4 mb-6 border-b border-slate-100 dark:border-[#1E2434]">
             <div className="flex items-center gap-3">
