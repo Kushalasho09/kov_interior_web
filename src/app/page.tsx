@@ -51,9 +51,13 @@ export default function Home() {
   const [phases, setPhases] = useState<ProjectPhase[]>([]);
   const [manpower, setManpower] = useState<SiteManpower | null>(null);
 
-  // Fetch all tables from Supabase
+  // Fetch all tables from Supabase (with timeout so UI never hangs indefinitely)
   const fetchAllData = useCallback(async () => {
     try {
+      const timeoutPromise = new Promise<never>((_, reject) =>
+        setTimeout(() => reject(new Error('Supabase fetch timeout')), 6000)
+      );
+
       const [
         projectRes,
         leadsRes,
@@ -65,17 +69,20 @@ export default function Home() {
         handoversRes,
         phasesRes,
         manpowerRes,
-      ] = await Promise.all([
-        supabase.from('projects').select('*').limit(1).single(),
-        supabase.from('leads').select('*').order('created_at', { ascending: false }),
-        supabase.from('design_pins').select('*').order('created_at', { ascending: true }),
-        supabase.from('boq_items').select('*').order('created_at', { ascending: true }),
-        supabase.from('site_updates').select('*').order('created_at', { ascending: false }),
-        supabase.from('milestone_payments').select('*').order('created_at', { ascending: true }),
-        supabase.from('inventory_items').select('*').order('created_at', { ascending: true }),
-        supabase.from('handover_records').select('*').order('created_at', { ascending: true }),
-        supabase.from('project_phases').select('*').order('order_index', { ascending: true }),
-        supabase.from('site_manpower').select('*').limit(1).single(),
+      ] = await Promise.race([
+        Promise.all([
+          supabase.from('projects').select('*').limit(1).single(),
+          supabase.from('leads').select('*').order('created_at', { ascending: false }),
+          supabase.from('design_pins').select('*').order('created_at', { ascending: true }),
+          supabase.from('boq_items').select('*').order('created_at', { ascending: true }),
+          supabase.from('site_updates').select('*').order('created_at', { ascending: false }),
+          supabase.from('milestone_payments').select('*').order('created_at', { ascending: true }),
+          supabase.from('inventory_items').select('*').order('created_at', { ascending: true }),
+          supabase.from('handover_records').select('*').order('created_at', { ascending: true }),
+          supabase.from('project_phases').select('*').order('order_index', { ascending: true }),
+          supabase.from('site_manpower').select('*').limit(1).single(),
+        ]),
+        timeoutPromise,
       ]);
 
       if (projectRes.data) setProject(projectRes.data);
@@ -149,6 +156,16 @@ export default function Home() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Public Landing Website Mode (render immediately without blocking on dashboard data)
+  if (currentView === 'landing') {
+    return (
+      <LandingPage
+        onEnterWorkspace={handleEnterWorkspace}
+        onRefreshData={fetchAllData}
+      />
+    );
+  }
+
   if (isLoading) {
     return (
       <div className="min-h-screen bg-slate-50 dark:bg-[#0D0F13] flex items-center justify-center flex-col gap-4 transition-colors">
@@ -159,16 +176,6 @@ export default function Home() {
           Initializing Kov Interiors OS...
         </p>
       </div>
-    );
-  }
-
-  // Public Landing Website Mode
-  if (currentView === 'landing') {
-    return (
-      <LandingPage
-        onEnterWorkspace={handleEnterWorkspace}
-        onRefreshData={fetchAllData}
-      />
     );
   }
 
